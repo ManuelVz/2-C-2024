@@ -5,7 +5,7 @@ mostrarlos en el navegador (pueden darle formato
 de card)*/
 
         // Lista de Pokémon para mostrar
-        const pokemonList = ['lotad', 'eevee', 'charmander', 'pikachu', 'squirtle'];
+        const pokemones = ['lotad', 'eevee', 'charmander', 'pikachu', 'squirtle'];
 
         // Lo defini como funcion para poder pasarla algunos pokemones de los que tengo en la lista
         function mostrarPokemon(pokemon) {
@@ -13,7 +13,7 @@ de card)*/
                 .then(resp => resp.json())
                 .then(data => {
                     const contenedor = document.getElementById('contenedor'); //Referencia al contenedor que tengo en el HTML
-                    const { name, weight, height, sprites } = data; //De todos los datos que me traje, me quedo con el nombre, peso, altura, una imagen, y el sonido
+                    const { name, weight, height, sprites } = data; //De todos los datos que me traje, me quedo con el nombre, peso, altura, una imagen
 
                     // Crea la tarjeta para mostrar en el HTML
                     const tarjeta = `
@@ -33,5 +33,5 @@ de card)*/
         }
 
         // Itera sobre la lista de pokemones, y se los paso a la funcion
-        pokemonList.forEach(pokemon => mostrarPokemon(pokemon));
+        pokemones.forEach(pokemon => mostrarPokemon(pokemon));
 
