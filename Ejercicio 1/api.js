@@ -29,7 +29,7 @@ de card)*/
 
                     contenedor.innerHTML += tarjeta;
                 })
-                .catch(err => console.log(err));
+                .catch(err => console.log("Ocurrio un error con la solicitud API"));
         }
 
         // Itera sobre la lista de pokemones, y se los paso a la funcion
