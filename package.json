@@ -1,0 +1,14 @@
+{
+  "name": "ejercicio-3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./main.js", 
+  "scripts": {
+    "build": "tsc",          
+    "start": "ts-node ./main.ts" 
+  },
+  "devDependencies": {
+    "typescript": "^4.9.4",
+    "ts-node": "^10.0.0"
+  }
+}
