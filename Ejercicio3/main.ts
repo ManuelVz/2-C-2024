@@ -3,7 +3,7 @@ import { Auto,Moto,Camion, RegistroAutomotor} from "./Ejercicio";
 
 // Defino un vehiculo de cada tipo (solo para luego cargarlos con la funcion agregar), "llamando" a las clases
 const auto1 = new Auto("Toyota", "Corolla", 2020);
-const moto1 = new Moto("Honda", "CBR500R", 2021);
+const moto1 = new Moto("Honda", "CBR500R", 2021); //Esto ya estaba del ejercicio anterior, pero es parte de lo que pide para el entregable del 7/10.
 const camion1 = new Camion("Mercedes-Benz", "Actros", 2019);
 
 // Defino un registro "llamando" a la clase RegistroAutomotor
@@ -22,12 +22,15 @@ registro.listarVehiculos();
 // le paso la posicion en la lista de vehiculos, y los nuevos valores (utilizo un set para marca, modelo y año).
 registro.modificarVehiculo(0, "Ford", "Fiesta", 2022); 
 
+// Modifico la moto (cambio los atributos con set)
+registro.modificarVehiculo(1, "Yamaha", "MT-03", 2022); //Esto lo agregue para el entregable del 7/10, solo que ahora, le pase una moto (el indice igual a 1, indica que se trata de una moto)
+
 
 console.log("\nLista de vehículos después de la modificación:");
 registro.listarVehiculos();
 
 // Con una logica parecida a la de antes, le paso la posicion en la lista del vehiculo que quiero eliminar, y utilizo splice para eliminarlo.
-registro.darDeBaja(1); 
+registro.darDeBaja(1);  //Elimino la moto que agregue antes.
 
 console.log("\nLista de vehículos después de dar de baja:");
 registro.listarVehiculos();
