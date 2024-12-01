@@ -24,6 +24,6 @@ export class TragamonedasClasico extends TragamonedasBase {
     }
 
     // Si no, el jugador pierde
-    return `Perdiste. Salio ${resultados.join(" ")}. Perdiste ${apuesta}.`;
+    return `Salio ${resultados.join(" ")}. Perdiste ${apuesta}.`;
   }
 }

@@ -38,6 +38,6 @@ export class TragamonedasTematico extends TragamonedasBase {
     }
 
     // Si no, el jugador pierde
-    return `Perdiste. Salió ${resultados.join(" ")}. Perdiste ${apuesta}.`;
+    return `Salió ${resultados.join(" ")}. Perdiste ${apuesta}.`;
   }
 }

@@ -18,29 +18,31 @@ export class Blackjack extends Juego {
     let jugador = Math.floor(Math.random() * 21) + 1; // Valor entre 1 y 21
     let banca = Math.floor(Math.random() * 21) + 1;
 
-    // En el blackjack, si tengo un puntaje entre 1, y 11, estoy en la zona segura, porque si pido una carta mas
-    // es imposible pasarme de 21, entonces, si el jugador/banca tienen menos de 11, van a pedir otra carta.
-    while (jugador <= 11) {
+   //Voy a tomar como regla general, que en caso de tener menos de 17, voy a pedir otra carta (aplica para la banca y el jugador)
+   //La zona segura, esta entre 0, y 11; pero para contemplar la posibilidad de pasarme de 21, voy a tomar el criterio del jugador osado (ref. Monte Carlo)
+    while (jugador <= 17) {
       jugador += Math.floor(Math.random() * 10) + 1; // Sumo un valor entre 1 y 10
     }
 
-    while (banca <= 11) {
+    while (banca <= 17) {
       banca += Math.floor(Math.random() * 10) + 1; // Sumo otro valor entre 1 y 10
     }
 
     // Ahora evaluo los resultados para determinar quien gano
     if (jugador > 21) {
       // Si el jugador se pasa de 21, pierde automaticamente
-      return `Tu puntaje (${jugador}) excede 21. ¡Perdés!`;
+      return `Tu puntaje (${jugador}) excede 21. ¡Perdiste ${apuesta}!`;
     } else if (banca > 21 || jugador > banca) {
       // Si la banca se pasa de 21 o el jugador tiene más puntos, gana el jugador
-      return `Tu puntaje: ${jugador}, Banca: ${banca}. ¡Ganaste!`;
+      const ganancia = apuesta * 2;
+
+      return `Tu puntaje: ${jugador}, Banca: ${banca}. ¡Ganaste ${ganancia}!`;
     } else if (jugador === banca) {
       // Si tienen igual puntaje, es un empate
       return `Tu puntaje: ${jugador}, Banca: ${banca}. ¡Empate!`;
     } else {
       // En cualquier otro caso, gana la banca
-      return `Tu puntaje: ${jugador}, Banca: ${banca}. ¡Perdés!`;
+      return `Tu puntaje: ${jugador}, Banca: ${banca}. ¡Perdiste ${apuesta}!`;
     }
   }
 }

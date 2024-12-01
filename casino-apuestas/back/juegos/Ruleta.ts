@@ -25,10 +25,10 @@ export class Ruleta extends Juego {
     // Si el numero elegido coincide con el ganador, calculo la ganancia y devuelvo el mensaje
     if (numeroGanador === numeroElegido) {
       const ganancia = apuesta * 35;
-      return `¡Ganaste ${ganancia}! Numero ganador: ${numeroGanador}.`;
+      return `Numero ganador: ${numeroGanador}.¡Ganaste ${ganancia}! `;
     }
 
     // Si no, devuelvo el mensaje de que perdio
-    return `Perdiste ${apuesta}. Numero ganador: ${numeroGanador}.`;
+    return `Numero ganador: ${numeroGanador}. Perdiste ${apuesta}`;
   }
 }
