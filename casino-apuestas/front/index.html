@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Casino Virtual</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>🎰 Bienvenido al Casino Virtual 🎲</h1>
+  </header>
+
+  <main>
+    <section id="juegos">
+      <!-- Opciones para elegir un juego -->
+      <h2>Elegi tu juego:</h2>
+      <!-- Botones que llaman a la función `mostrarJuego` con el nombre del juego -->
+      <button onclick="mostrarJuego('tragamonedas-clasico')">Tragamonedas Clasico</button>
+      <button onclick="mostrarJuego('tragamonedas-tematico')">Tragamonedas Tematico</button>
+      <button onclick="mostrarJuego('ruleta')">Ruleta</button>
+      <button onclick="mostrarJuego('blackjack')">Blackjack</button>
+    </section>
+
+    <section id="interaccion">
+      <!-- Muestra el nombre del juego seleccionado -->
+      <h2 id="juego-seleccionado"></h2>
+      <!-- Espacio para las instrucciones del juego -->
+      <p id="instrucciones"></p>
+      <!-- Contenedor para agregar las opciones con el inner -->
+      <div id="opciones"></div>
+      <!-- Boton para iniciar el juego (se oculta inicialmente con CSS) -->
+      <button id="jugar-btn" style="display: none;">¡Jugar!</button>
+      <!-- Muestro el resultado del juego -->
+      <p id="resultado"></p>
+    </section>
+  </main>
+
+
+  <script src="app.js"></script>
+</body>
+</html>

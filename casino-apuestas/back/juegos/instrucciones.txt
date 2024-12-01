@@ -1,0 +1,4 @@
+Blackjack: El objetivo es alcanzar 21 puntos sin pasarte. Las cartas valen su número, y los ases valen 1 u 11.
+Ruleta: Elegí un número entre 0 y 36. Si coincide con el número ganador, ganás 35 veces tu apuesta.
+Tragamonedas Clasico: Hacé girar los rodillos. Si los símbolos coinciden, ganás 10 veces tu apuesta.
+Tragamonedas Tematico: Igual que el clásico, pero con temática Frutas y Joyas. Si los 💎 coinciden, ganas 35 veces tu apuesta.
