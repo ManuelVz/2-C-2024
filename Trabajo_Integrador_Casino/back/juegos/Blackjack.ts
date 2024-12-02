@@ -1,6 +1,6 @@
 import { Juego } from "../abstracts/Juegos";
 
-// Clase para representar el juego de Blackjack
+// Clase para representar el juego de Blackjack.
 export class Blackjack extends Juego {
   // Constructor: defino el nombre del juego como "Blackjack" y una apuesta minima de 20
   constructor() {

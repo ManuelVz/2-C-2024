@@ -1,6 +1,6 @@
 import { TragamonedasBase } from "./TragamonedasBase";
 
-// Clase para un tragamonedas clasico
+// Clase para un tragamonedas clasico.
 export class TragamonedasClasico extends TragamonedasBase {
   constructor() {
     // Llamo al constructor de la clase base con el nombre, apuesta minima y los simbolos clasicos

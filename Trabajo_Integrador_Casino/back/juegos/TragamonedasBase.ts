@@ -1,6 +1,6 @@
 import { Juego } from "../abstracts/Juegos";
 
-// Clase abstracta que sirve como base para los juegos de tragamonedas
+// Clase abstracta que sirve como base para los juegos de tragamonedas.
 export abstract class TragamonedasBase extends Juego {
   // Aca guardo los simbolos que se van a usar en los rodillos
   protected simbolos: string[];

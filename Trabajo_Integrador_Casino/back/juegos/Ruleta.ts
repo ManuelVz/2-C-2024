@@ -1,6 +1,6 @@
 import { Juego } from "../abstracts/Juegos";
 
-// Esta clase representa el juego de Ruleta
+// Esta clase representa el juego de Ruleta.
 export class Ruleta extends Juego {
   constructor() {
     // Llamo al constructor de la clase base y le paso el nombre del juego y la apuesta minima

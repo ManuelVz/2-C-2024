@@ -1,6 +1,6 @@
 import { TragamonedasBase } from "./TragamonedasBase";
 
-// Clase para un tragamonedas con tematica
+// Clase para un tragamonedas con tematica.
 export class TragamonedasTematico extends TragamonedasBase {
   // Aca guardo la tematica del tragamonedas
   private tematica: string;

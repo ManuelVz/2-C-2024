@@ -1,7 +1,7 @@
 import * as fs from "fs"; //Para leer los archivos
 import { Jugable } from "../interfaces/Jugable"; 
 
-// Clase abstracta base para todos los juegos del casino
+// Clase abstracta base para todos los juegos del casino.
 export abstract class Juego implements Jugable { //Estoy implementando la interface "Jugable", esto va a obligar a la clase Juegos a usar el metodo jugar
   // Atributo privado para nombre y publico para la apuesta minima
   public nombre: string;
