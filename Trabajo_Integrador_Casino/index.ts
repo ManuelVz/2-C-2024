@@ -4,7 +4,7 @@ import { TragamonedasTematico } from "./back/juegos/TragamonedasTematico";
 import { Ruleta } from "./back/juegos/Ruleta";
 import { Blackjack } from "./back/juegos/Blackjack";
 
-// Creo la interfaz para manejar entradas y salidas en consola
+// Creo la interfaz para manejar entradas y salidas en consola.
 const rl = readline.createInterface({
   input: process.stdin, // Entrada estándar (teclado)
   output: process.stdout, // Salida estándar (consola)
