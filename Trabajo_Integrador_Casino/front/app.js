@@ -1,4 +1,4 @@
-const SERVER_URL = "http://localhost:3000"; // Direccion del servidor Express
+const SERVER_URL = "http://localhost:3000"; // Direccion del servidor Express.
 
 // Funcion que muestra las opciones para el juego seleccionado
 async function mostrarJuego(juego) {

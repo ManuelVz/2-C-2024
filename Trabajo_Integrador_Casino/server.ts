@@ -1,4 +1,4 @@
-import express from "express"; // Importo express para manejar las rutas del servidor
+import express from "express"; // Importo express para manejar las rutas del servidor.
 import path from "path"; // Path para trabajar con rutas de archivos
 import { TragamonedasClasico } from "./back/juegos/TragamonedasClasico";
 import { TragamonedasTematico } from "./back/juegos/TragamonedasTematico";
