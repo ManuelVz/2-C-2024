@@ -13,7 +13,7 @@ node Compilados/index.js
 npx tsc
 node Compilados/server.js
 
-Y luego correr index.html
+Y luego correr index.html.
 
 
 
