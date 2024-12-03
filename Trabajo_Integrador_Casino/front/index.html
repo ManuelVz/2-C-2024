@@ -12,30 +12,49 @@
   </header>
 
   <main>
-    <section id="juegos">
-      <!-- Opciones para elegir un juego. -->
-      <h2>Elegi tu juego:</h2>
-      <!-- Botones que llaman a la función `mostrarJuego` con el nombre del juego -->
-      <button onclick="mostrarJuego('tragamonedas-clasico')">Tragamonedas Clasico</button>
-      <button onclick="mostrarJuego('tragamonedas-tematico')">Tragamonedas Tematico</button>
-      <button onclick="mostrarJuego('ruleta')">Ruleta</button>
-      <button onclick="mostrarJuego('blackjack')">Blackjack</button>
-    </section>
+    <div class="contenedor">
+      <section id="juegos" class="tarjeta">
+       <!-- Opciones para elegir un juego. -->
 
-    <section id="interaccion">
+        <h2>🎲 Elegi tu juego:</h2>
+        <div class="grupo-botones">
+        <!-- Botones que llaman a la funcion `mostrarJuego` con el nombre del juego -->
+
+          <button onclick="mostrarJuego('tragamonedas-clasico')">Tragamonedas Clasico</button>
+          <button onclick="mostrarJuego('tragamonedas-tematico')">Tragamonedas Tematico</button>
+          <button onclick="mostrarJuego('ruleta')">Ruleta</button>
+          <button onclick="mostrarJuego('blackjack')">Blackjack</button>
+        </div>
+      </section>
+
+      <section id="interaccion" class="tarjeta">
       <!-- Muestra el nombre del juego seleccionado -->
-      <h2 id="juego-seleccionado"></h2>
+        <h2 id="juego-seleccionado"></h2>
       <!-- Espacio para las instrucciones del juego -->
-      <p id="instrucciones"></p>
+        <p id="instrucciones" class="instrucciones"></p>
       <!-- Contenedor para agregar las opciones con el inner -->
-      <div id="opciones"></div>
-      <!-- Boton para iniciar el juego (se oculta inicialmente con CSS) -->
-      <button id="jugar-btn" style="display: none;">¡Jugar!</button>
+        <div id="opciones"></div>
+        <button id="jugar-btn" style="display: none;">¡Jugar!</button>
       <!-- Muestro el resultado del juego -->
-      <p id="resultado"></p>
-    </section>
-  </main>
+        <p id="resultado" class="resultado"></p>
+      </section>
 
+      <!-- Seccion de Administracion -->
+      <section id="administracion" class="tarjeta">
+        <h2>⚙️ Panel de Administracion</h2>
+        <div class="botones-admin">
+          <div class="tarjeta-admin">
+            <h3>➕ Agregar Juego</h3>
+            <button onclick="agregarJuego()">Agregar Juego</button>
+          </div>
+          <div class="tarjeta-admin">
+            <h3>➖ Quitar Juego</h3>
+            <button onclick="eliminarJuego()">Quitar Juego</button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
 
   <script src="app.js"></script>
 </body>

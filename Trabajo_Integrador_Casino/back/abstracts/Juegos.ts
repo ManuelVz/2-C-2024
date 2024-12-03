@@ -13,11 +13,6 @@ export abstract class Juego implements Jugable { //Estoy implementando la interf
     this.apuestaMinima = apuestaMinima; // Cuanto es lo minimo que se puede apostar en este juego
   }
 
-  // Metodo para obtener el nombre del juego (publico porque quiero que cualquier clase lo pueda usar)
-  public getNombre(): string {
-    return this.nombre; // Devuelvo el nombre del juego
-  }
-
   // Metodo abstracto: las clases hijas lo tienen que implementar si o si
   abstract jugar(apuesta: number, numeroElegido?: number): string;
 

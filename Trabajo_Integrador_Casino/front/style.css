@@ -1,56 +1,138 @@
+/* Estilos globales */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
-    text-align: center;
-  }
-  
-  header {
-    background-color: #333;
-    color: white;
-    padding: 1rem 0;
-  }
-  
-  h1 {
-    margin: 0;
-  }
-  
-  main {
-    padding: 2rem;
-  }
-  
-  #juegos button {
-    margin: 1rem;
-    padding: 1rem 2rem;
-    font-size: 1.2rem;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  #juegos button:hover {
-    background-color: #0056b3;
-  }
-  
-  #interaccion {
-    margin-top: 2rem;
-  }
-  
-  #jugar-btn {
-    margin-top: 1rem;
-    padding: 0.5rem 1rem;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  #jugar-btn:hover {
-    background-color: #218838;
-  }
-  
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  color: #333;
+  text-align: center;
+}
+
+header {
+  background-color: #343a40;
+  color: white;
+  padding: 1.5rem 0;
+}
+
+h1 {
+  margin: 0;
+}
+
+main {
+  padding: 2rem;
+}
+
+/* Contenedor general */
+.contenedor {
+  display: flex;
+  flex-direction: column; /* Las secciones se apilan verticalmente */
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Estilo de las tarjetas */
+.tarjeta {
+  background: white;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  min-width: 320px; /* Ancho mínimo ajustado */
+  max-width: 700px; /* Ancho máximo aumentado */
+  margin: 0 auto;
+}
+
+.tarjeta h2 {
+  margin-bottom: 1rem;
+}
+
+/* Botones de juegos */
+.grupo-botones button {
+  margin: 0.5rem;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.grupo-botones button:hover {
+  background-color: #0056b3;
+}
+
+/* Botón de jugar */
+
+#jugar-btn {
+  margin-top: 1rem;
+  padding: 0.7rem 1.5rem;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+}
+
+#jugar-btn:hover {
+  background-color: #218838;
+}
+
+/* Instrucciones */
+.instrucciones {
+  font-style: italic;
+  color: #555;
+}
+
+/* Resultado del juego */
+.resultado {
+  font-weight: bold;
+  color: #333;
+}
+
+/* Panel de administración */
+#administracion h2 {
+  margin-bottom: 1rem;
+}
+
+.botones-admin {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center; /* Centrar las tarjetas dentro del panel */
+}
+
+.tarjeta-admin {
+  background: #f8f9fa;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  min-width: 180px;
+}
+
+.tarjeta-admin h3 {
+  margin-bottom: 0.8rem;
+  font-size: 1.2rem;
+}
+
+/* Botones de administración */
+.tarjeta-admin button {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  font-size: 1rem;
+  background-color: #ffc107;
+  color: black;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.tarjeta-admin button:hover {
+  background-color: #e0a800;
+}

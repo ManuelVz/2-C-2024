@@ -1,28 +1,27 @@
 const SERVER_URL = "http://localhost:3000"; // Direccion del servidor Express.
 
+let casino; // Variable para manejar la instancia del casino.
+
 // Funcion que muestra las opciones para el juego seleccionado
 async function mostrarJuego(juego) {
-  // Tomo los elementos necesarios del DOM
   const juegoSeleccionado = document.getElementById("juego-seleccionado");
   const opciones = document.getElementById("opciones");
   const jugarBtn = document.getElementById("jugar-btn");
   const resultado = document.getElementById("resultado");
   const instrucciones = document.getElementById("instrucciones");
 
-  // Actualizo el titulo para que muestre que juego se eligio
   juegoSeleccionado.textContent = `Jugando: ${juego.replace("-", " ")}`;
   opciones.innerHTML = ""; // Limpio las opciones anteriores
   jugarBtn.style.display = "block"; // Muestro el boton de jugar
   resultado.textContent = ""; // Limpio el resultado anterior
-  instrucciones.textContent = "Cargando instrucciones..."; // Mensaje para avisar que las instrucciones se estan cargando
+  instrucciones.textContent = "Cargando instrucciones..."; // Muestro mensaje mientras se cargan las instrucciones
 
-  // Trato de obtener las instrucciones del juego desde el servidor
+  // Trato de obtener las instrucciones del juego desde el servidor  
   try {
     const response = await fetch(`${SERVER_URL}/instrucciones/${juego}`);
     const data = await response.json();
-    instrucciones.textContent = data.instrucciones; // Muestro las instrucciones que vienen del servidor
+    instrucciones.textContent = data.instrucciones; // Listo, ya tenes las instrucciones.
   } catch (error) {
-    // Si algo falla, muestro un mensaje de error y las paso por consola
     instrucciones.textContent = "Error al cargar las instrucciones.";
     console.error(error);
   }
@@ -41,8 +40,7 @@ async function mostrarJuego(juego) {
     `;
   }
 
-  // Le asigno la funcion `jugar` al click del boton
-  jugarBtn.onclick = () => jugar(juego);
+  jugarBtn.onclick = () => jugar(juego); //  Le asigno la funcion jugar al click del boton
 }
 
 // Esta funcion llama al servidor para jugar al juego seleccionado
@@ -65,5 +63,50 @@ async function jugar(juego) {
     // Si algo falla, muestro un mensaje de error y lo paso por consola
     resultado.textContent = "Error al conectar con el servidor.";
     console.error(error);
+  }
+}
+
+// Funcion para agregar un juego nuevo al casino
+async function agregarJuego() {
+  const nombre = prompt("Ingrese el nombre del juego que desea agregar (tragamonedas-clasico, tragamonedas-tematico, ruleta, blackjack):"); 
+  const tipo = nombre; // agregarJuego (de la clase Casino), necesita tipo, y nombre; para no tener que escribirlo dos veces, tipo y nombre van a ser iguales
+
+  if (!nombre) {
+    alert("El nombre es obligatorio."); 
+    return;
+  }
+
+  // Mando la solicitud para agregar el juego
+  try {
+    const response = await fetch(`${SERVER_URL}/juegos`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ nombre, tipo }),
+    });
+    const data = await response.json();
+    alert(data.mensaje); // Respuesta
+  } catch (error) {
+    console.error(error);
+    alert("Error al agregar el juego.");
+  }
+}
+
+// Funcion para eliminar un juego del casino
+async function eliminarJuego() {
+  const nombre = prompt("Ingrese el nombre del juego que desea eliminar (tragamonedas-clasico, tragamonedas-tematico, ruleta, blackjack):");
+
+  if (!nombre) {
+    alert("El nombre es obligatorio.");
+    return;
+  }
+
+  // Aca, mando la solicitud para borrar un juego
+  try {
+    const response = await fetch(`${SERVER_URL}/juegos/${nombre}`, { method: "DELETE" });
+    const data = await response.json();
+    alert(data.mensaje); // Respuesta
+  } catch (error) {
+    console.error(error);
+    alert("Error al eliminar el juego.");
   }
 }

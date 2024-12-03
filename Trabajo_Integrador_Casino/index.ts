@@ -1,86 +1,181 @@
-import readline from "readline"; // Importo readline para interactuar con el usuario por consola
+import readline from "readline"; // Para interactuar con el usuario por consola
 import { TragamonedasClasico } from "./back/juegos/TragamonedasClasico";
 import { TragamonedasTematico } from "./back/juegos/TragamonedasTematico";
 import { Ruleta } from "./back/juegos/Ruleta";
 import { Blackjack } from "./back/juegos/Blackjack";
+import { Casino } from "./back/admin/Casino"; // Importo la clase Casino (lo agregue despues de la correccion de Rocio)
 
-// Creo la interfaz para manejar entradas y salidas en consola.
+// Creo la interfaz para entrada y salida en consola
 const rl = readline.createInterface({
-  input: process.stdin, // Entrada estándar (teclado)
-  output: process.stdout, // Salida estándar (consola)
+  input: process.stdin,
+  output: process.stdout,
 });
 
-// Instancio los juegos disponibles en el casino
-const tragamonedasClasico = new TragamonedasClasico();
-const tragamonedasTematico = new TragamonedasTematico();
-const ruleta = new Ruleta();
-const blackjack = new Blackjack();
+// Instancia del casino que contiene los juegos (ahora, Casino esta compuesta por los juegos)
+const casino = new Casino();
 
-// Funcion que arranca el casino, mostrando un mensaje de bienvenida
+// Funcion principal para iniciar el casino
 function iniciarCasino() {
-  console.log("🎰 ¡Bienvenido al Casino Virtual! 🎲"); // Mensaje inicial
-  elegirJuego(); // Llamo a la funcion que permite elegir un juego
+  console.log("🎰 ¡Bienvenido al Casino Virtual! 🎲");
+  mostrarMenuPrincipal(); // Muestra el menu principal
 }
 
-// Funcion para mostrar el menu y permitir que el usuario elija un juego
-function elegirJuego() {
-  console.log("\nElige un juego:");
-  console.log("1. Tragamonedas Clásico");
-  console.log("2. Tragamonedas Temático");
-  console.log("3. Ruleta");
-  console.log("4. Blackjack");
-  console.log("5. Salir");
+// Menu principal del casino
+function mostrarMenuPrincipal() {
+  console.log("\nMenu Principal:");
+  console.log("1. Jugar");
+  console.log("2. Panel de Administracion");
+  console.log("3. Salir");
 
-  // Pregunto al usuario que quiere jugar
-  rl.question("¿Qué juego querés jugar? (1-5): ", (opcion) => {
-    // Dependiendo de la opcion elegida, ejecuto un caso diferente
+  //Modifique esta parte, para agregar el panel de administracion
+  rl.question("Elige una opcion (1-3): ", (opcion) => {
     switch (opcion) {
       case "1":
-        jugar(tragamonedasClasico); // Jugar al Tragamonedas Clasico
+        menuJuegos(); // Navega al menu de juegos
         break;
       case "2":
-        jugar(tragamonedasTematico); // Jugar al Tragamonedas Tematico
+        menuAdministracion(); // Navega al panel de administracion
         break;
       case "3":
-        jugar(ruleta); // Jugar a la Ruleta
-        break;
-      case "4":
-        jugar(blackjack); // Jugar al Blackjack
-        break;
-      case "5":
-        console.log("¡Gracias por jugar! Volvé pronto. 🎲"); // Mensaje de despedida
-        rl.close(); // Cierro la interfaz de consola
+        console.log("¡Gracias por visitar el casino! 🎲");
+        rl.close(); // Cierra la interfaz de consola
         break;
       default:
-        console.log("Opción inválida. Probá de nuevo."); // Manejo de opcion invalida
-        elegirJuego(); // Vuelvo a mostrar el menu
+        console.log("Opcion invalida. Intenta de nuevo.");
+        mostrarMenuPrincipal(); // Si la opcion no es valida, vuelve al menu principal
+    }
+  });
+}
+
+// Menu de seleccion de juegos
+function menuJuegos() {
+  const juegos = casino.obtenerJuegos(); // Obtengo todos los juegos del casino (ahora se obtienen de la clase Casino)
+  if (juegos.length === 0) {
+    console.log("No hay juegos disponibles en el casino.");
+    return mostrarMenuPrincipal(); // Si no hay juegos, vuelvo al menu principal
+  }
+
+  console.log("\nJuegos Disponibles:");
+  juegos.forEach((juego, index) => {
+    console.log(`${index + 1}. ${juego.replace("-", " ")}`); // Muestro los juegos disponibles
+  });
+  console.log(`${juegos.length + 1}. Volver al menu principal`);
+
+  rl.question("Elige un juego para jugar: ", (opcion) => {
+    const indice = Number(opcion) - 1; // Convierto la opcion a un indice numerico
+
+    if (indice >= 0 && indice < juegos.length) {
+      jugar(casino.obtenerJuego(juegos[indice])); // Si es una opcion valida, se juega el juego seleccionado
+    } else if (indice === juegos.length) {
+      mostrarMenuPrincipal(); // Si elige volver al menu principal, lo llevo ahi
+    } else {
+      console.log("Opcion invalida.");
+      menuJuegos(); // Si la opcion es invalida, vuelvo a mostrar el menu de juegos
     }
   });
 }
 
 // Funcion generica para jugar un juego
 function jugar(juego: any) {
-  console.log(`\n=== Jugando a: ${juego.getNombre()} ===`); // Muestro el nombre del juego
-  console.log(`Instrucciones: ${juego.leerInstrucciones()}`); // Muestro las instrucciones
+  console.log(`\n=== Jugando a: ${juego.constructor.name} ===`); // Muestro el nombre del juego
+  console.log(`Instrucciones: ${juego.leerInstrucciones()}`); // Muestro las instrucciones del juego
 
-  // Pregunto cuanto quiere apostar el usuario
-  rl.question("¿Cuánto querés apostar? ", (apuesta) => {
+  rl.question("¿Cuanto queres apostar? ", (apuesta) => {
     const resultado = juego.jugar(Number(apuesta)); // Llamo al metodo jugar del juego con la apuesta
-    console.log(`Resultado: ${resultado}`); // Muestro el resultado (si ganó o perdió)
+    console.log(`Resultado: ${resultado}`); // Muestro el resultado (si gano o perdio)
 
-    // Pregunto si quiere jugar de nuevo o cambiar de juego
-    rl.question("\n¿Querés jugar otra vez (1) o elegir otro juego (2)? ", (respuesta) => {
+    rl.question("\n¿Queres jugar otra vez (1) o volver al menu de juegos (2)? ", (respuesta) => {
       if (respuesta === "1") {
         jugar(juego); // Vuelve a jugar el mismo juego
-      } else if (respuesta === "2") {
-        elegirJuego(); // Vuelve al menu principal
       } else {
-        console.log("Opción inválida. Volviendo al menú principal."); // Manejo de opcion invalida
-        elegirJuego();
+        menuJuegos(); // Vuelve al menu de juegos
       }
     });
   });
 }
 
-// Arranco el casino llamando a la funcion principal
-iniciarCasino();
+// Menu de administracion
+function menuAdministracion() {
+  console.log("\nPanel de Administracion:");
+  console.log("1. Agregar un juego");
+  console.log("2. Eliminar un juego");
+  console.log("3. Volver al menu principal");
+
+  rl.question("Elige una opcion (1-3): ", (opcion) => {
+    switch (opcion) {
+      case "1":
+        agregarJuego(); // Si elijo agregar juego, invoca la funcion para agregar juegos (defino un juego, y se lo paso a Casino, con el metodo agregarJuego )
+        break;
+      case "2":
+        eliminarJuego(); // Si elijo eliminar juego, invoca la funcion para eliminar juegos (defino un juego, y se lo paso a Casino, con el metodo eliminarJuego)
+        break;
+      case "3":
+        mostrarMenuPrincipal(); // Si elijo volver, va al menu principal
+        break;
+      default:
+        console.log("Opcion invalida.");
+        menuAdministracion(); // Si la opcion no es valida, vuelve al panel de administracion
+    }
+  });
+}
+
+// Agregar un juego al casino
+function agregarJuego() {
+  rl.question("Ingrese el nombre del juego (tragamonedas-clasico, tragamonedas-tematico, ruleta, blackjack): ", (nombre) => {
+    const tipo = nombre; // agregarJuego (de la clase Casino), necesita tipo, y nombre; para no tener que escribirlo dos veces, tipo y nombre van a ser iguales
+
+    let nuevoJuego;
+    switch (tipo) {
+      case "tragamonedas-clasico":
+        nuevoJuego = new TragamonedasClasico(); // Creo el juego tragamonedas clasico
+        break;
+      case "tragamonedas-tematico":
+        nuevoJuego = new TragamonedasTematico(); // Creo el juego tragamonedas tematico
+        break;
+      case "ruleta":
+        nuevoJuego = new Ruleta(); // Creo el juego ruleta
+        break;
+      case "blackjack":
+        nuevoJuego = new Blackjack(); // Creo el juego blackjack
+        break;
+      default:
+        console.log("Tipo de juego no valido.");
+        return menuAdministracion(); // Si el tipo no es valido, vuelvo al panel de administracion
+    }
+
+    casino.agregarJuego(nombre, nuevoJuego); // Agrego el nuevo juego al casino
+    console.log(`Juego '${nombre}' agregado con exito.`);
+    menuAdministracion(); // Vuelvo al panel de administracion
+  });
+}
+
+// Eliminar un juego del casino
+function eliminarJuego() {
+  const juegos = casino.obtenerJuegos(); // Obtengo los juegos disponibles
+  if (juegos.length === 0) {
+    console.log("No hay juegos disponibles para eliminar.");
+    return menuAdministracion(); // Si no hay juegos, vuelvo al panel de administracion
+  }
+
+  console.log("\nJuegos Disponibles para Eliminar:");
+  juegos.forEach((juego, index) => {
+    console.log(`${index + 1}. ${juego.replace("-", " ")}`); // Muestro los juegos disponibles para eliminar
+  });
+
+  rl.question("Elige el numero del juego que deseas eliminar: ", (opcion) => {
+    const indice = Number(opcion) - 1; // Convierto la opcion a un indice numerico
+
+    if (indice >= 0 && indice < juegos.length) {
+      const nombre = juegos[indice]; // Obtengo el nombre del juego a eliminar
+      casino.eliminarJuego(nombre); // Elimino el juego del casino
+      console.log(`Juego '${nombre}' eliminado con exito.`);
+    } else {
+      console.log("Opcion invalida.");
+    }
+    menuAdministracion(); // Despues de eliminar o si la opcion es invalida, vuelvo al panel de administracion
+  });
+}
+
+
+// Inicia el casino
+iniciarCasino(); // Arranco el casino
